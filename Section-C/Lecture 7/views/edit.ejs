@@ -6,10 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-  <h1>Create New User</h1>
-    <form action="/users" method="post">
+  <h1>Update User</h1>
+    <form action="/user/<%= user.id%>?_method=patch" method="post">
         <label for="name"></label>
         <input 
+         value="<%= user.name%>"
           type="text"
           name="name"
           placeholder="name"
@@ -17,6 +18,7 @@
         />
         <label for="age"></label>
         <input 
+        value="<%= user.age%>"
           type="number"
           name="age"
           placeholder="age"
@@ -24,6 +26,7 @@
         />
         <label for="city"></label>
         <input 
+        value="<%= user.city%>"
           type="text"
           name="city"
           placeholder="city"

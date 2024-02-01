@@ -27,10 +27,11 @@
     <div class="container">
          <%for(let user of userData){%>
             <div class="box">
-                <h1><%= user.id%></h1>
                 <h1><%=user.name%></h1>
                 <h1><%=user.age%></h1>
                 <h1><%=user.city%></h1>
+                <a href="/user/<%= user.id%>">Show</a>
+                <a href="/user/<%= user.id%>/new">Edit</a>
             </div>
          <% } %>
     </div>
