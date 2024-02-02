@@ -55,6 +55,18 @@ app.patch('/user/:id', (req, res)=>{
     res.redirect('/users')
 })
 
+app.delete('/user/:id', (req, res)=>{
+    const id = req.params.id;
+    const user = userData.find((u)=> u.id == id);
+
+    //  const index = userData.indexOf(user);
+    //  userData.splice(index, 1);
+
+    const newUserArr = userData.filter((u) => u.id != id)
+    userData = newUserArr;
+     res.redirect('/users');
+})
+
 app.listen(1313, ()=>{
     console.log(`server is running port 1313`)
 })

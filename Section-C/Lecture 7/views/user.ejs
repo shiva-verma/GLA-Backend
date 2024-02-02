@@ -32,6 +32,10 @@
                 <h1><%=user.city%></h1>
                 <a href="/user/<%= user.id%>">Show</a>
                 <a href="/user/<%= user.id%>/new">Edit</a>
+                <form action="/user/<%= user.id%>?_method=delete" method="post">
+                    <button>Delete</button>
+                </form>
+                
             </div>
          <% } %>
     </div>
