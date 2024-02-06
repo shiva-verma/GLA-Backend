@@ -9,6 +9,8 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
         }
         .box{
             height: 300px;
@@ -16,16 +18,29 @@
             border: 2px solid red;
             color: black;
         }
+        .navbar{
+            display: flex;
+            justify-content: space-around;
+        }
     </style>
 </head>
 <body>
-    <h1>Users Detail</h1>
+    <div class="navbar">
+      <h1>Users Detail</h1>
+      <a href="/user/new">Create New User</a> 
+    </div>
     <div class="container">
        <% for(let user of userData){ %>
             <div class="box">
                 <h1><%= user.name %></h1>
                 <h1><%= user.age %></h1>
                 <h1><%= user.city%></h1>
+                <a href="/user/<%= user.id%>">Show</a>
+                <a href="/user/<%= user.id%>/new">Edit</a>
+                <form action="/user/<%= user.id%>?_method=delete" method="post">
+                   <button>delete</button> 
+                </form>
+                
             </div>
        <% } %>
         </div>
