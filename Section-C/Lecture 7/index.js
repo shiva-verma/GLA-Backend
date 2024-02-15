@@ -3,6 +3,8 @@ const userData = require('./data/data.js')
 const methodOverride = require('method-override');
 const app = express();
 
+const loc = path.join(__dirname,"data","data.js")
+
 app.set('view engine', 'ejs');
 app.set('views','./views')
 app.use(express.urlencoded({extended:true}))

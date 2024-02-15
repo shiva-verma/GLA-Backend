@@ -1,19 +1,16 @@
 {
-  "name": "lecture-9",
+  "name": "lecture-6",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.20.2",
     "express": "^4.18.2",
-    "method-override": "^3.0.0",
     "nodemon": "^3.0.3",
     "path": "^0.12.7"
   }
