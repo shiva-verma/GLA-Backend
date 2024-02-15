@@ -1,8 +1,11 @@
 const express= require('express');
 const app = express();
 const path = require('path');
+const methodOverride = require('method-override')
 
 app.use(express.static(path.join(__dirname, "static")));
+app.use(methodOverride("_method"));
+app.use(express.json());
 
 const data = ["swimming", "football", "basketball", "cricket"];
 
@@ -16,8 +19,6 @@ app.patch('/todos',(req, res)=>{
     res.send({
         "success":true
     })
-
-
 })
 
 app.listen(3030, ()=>{

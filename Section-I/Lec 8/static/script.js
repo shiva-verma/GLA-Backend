@@ -10,6 +10,7 @@ function refresh(){
     .then((data)=>{   //data
         console.log(data);
         let todos = data;
+        list.innerHTML = '';
         for(let todo of todos){
             let p = document.createElement('p');   //dom manipulation
             p.innerHTML = todo;
@@ -30,7 +31,7 @@ form.addEventListener('submit', (e)=>{
     let value1 = input.value;
 
     let newTodo = {
-        'value':value1
+        'value':value1,
     }
 
     fetch('http://localhost:3030/todos?_method=patch', {
@@ -40,5 +41,13 @@ form.addEventListener('submit', (e)=>{
             "content-type":"application/json"
         }
     })
+    .then((res)=>{
+        return res.json();
+    })
+    .then((data)=>{
+        refresh();
+    })
+
+    
 })
 

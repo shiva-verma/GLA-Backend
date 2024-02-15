@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .box{
+            height: 250px;
+            width: 250px;
+            color: black;
+            border: 2px solid red;
+            margin: 15px;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Detail</h1>
+    <div class="container">
+      <%  for(let user of userData){ %>
+        <div class="box">
+            <h1><%= user.name%></h1>
+            <h1><%=user.age%></h1>
+            <h1><%=user.city%></h1>
+            <a href="/user/<%= user.id%>">Show</a>
+            <a href="/user/<%= user.id%>/new">Edit</a>
+        </div>
+       <% } %>
+    </div>
+</body>
+</html>

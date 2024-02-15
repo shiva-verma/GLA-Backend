@@ -4,9 +4,15 @@ const orderRouter = require('./routes/orderRoutes')
 const app = express();
 
 // middleware
-app.use('/product', productRouter);
+app.use('/product', productRouter);  //route level middleware
 // app.use('/order', orderRouter);
 
+function myMiddleware(req, res, next){
+    console.log("middleware");
+    next();
+}
+
+app.use(myMiddleware);
 //product route
 
 
