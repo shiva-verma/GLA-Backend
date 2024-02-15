@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Update User</h1>
+    <form action="/user/<%=user.id%>?_method= patch" method="post">
+        <label for="name">Name</label>
+        <input 
+        value="<%= user.name %>"
+          type="text"
+          name="name"
+          placeholder="name"
+          id="name"
+        />
+        <label for="age">Age</label>
+        <input 
+        value="<%= user.age %>"
+          type="number"
+          name="age"
+          placeholder="age"
+          id="age"
+        />
+        <label for="city">City</label>
+        <input 
+        value="<%= user.city %>"
+          type="text"
+          name="city"
+          placeholder="city"
+          id="city"
+        />
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
