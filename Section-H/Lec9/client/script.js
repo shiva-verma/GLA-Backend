@@ -11,7 +11,7 @@ function refresh(){
         list.innerHTML = '';
         for(let game of games){ 
             let p = document.createElement('p');
-            p.innerHTML = game;
+            p.innerHTML = `${game} <button>Show</button>  <button>Edit</button> <button>delete</button>`;
             list.appendChild(p);
         }
     })
