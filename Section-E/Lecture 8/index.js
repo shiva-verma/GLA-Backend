@@ -29,6 +29,7 @@ app.post('/users', (req, res)=>{
     }
 
     userData.push(newObj);
+    // await student.create(newObj)
     res.redirect('/users')//redirecting home
 })
 
