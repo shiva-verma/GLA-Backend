@@ -1,0 +1,33 @@
+<% layout('layout/boilerplate') -%>
+<div class="row">
+  <div class="container mt-4 col-lg-6">
+    <div class="card" style="width: 18rem;">
+        <img src=<%= singleProduct.imageUrl %> class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= singleProduct.productName %></h5>
+          <p class="card-text"><%= singleProduct.description %></p>
+          <p class="card-text"><%= singleProduct.price %></p>
+          <a href="#" class="btn btn-primary m-1">Add to cart</a>
+          <a href="#" class="btn btn-success m-1">Buy Now</a>
+          <form action="/product/<%= singleProduct._id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-danger m-1">Delete</button>
+          </form>
+          <a href="/product/<%= singleProduct._id %>/edit" class="btn btn-warning m-1">Edit</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <h1 class="text-center">Reviews</h1>
+      <form action="/review/<%= singleProduct._id %>" method="Post">
+        <div>
+          <label for="customRange3" class="form-label">Rating</label>
+          <input type="range" class="form-control" min="0" max="5" step="1" id="customRange3" name="rating">
+        </div>
+         <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Comment</label>
+          <textarea type="text" class="form-control" id="exampleInputPassword1" name="comment"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
