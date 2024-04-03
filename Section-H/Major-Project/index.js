@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 const productRouter = require('./routes/productRoutes.js')
 const reviewRouter = require('./routes/reviewRoutes.js')
 const ejsmate = require('ejs-mate');
+const flash = require('connect-flash');
 const port = 5000;
 
 dbConnect();
@@ -20,6 +21,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.use(productRouter);
 app.use(reviewRouter);
+app.use(flash());
 
 
 

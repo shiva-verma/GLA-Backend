@@ -13,14 +13,22 @@ router.get("/product/new", (req, res) => {
   })
   
   router.post("/product",async(req, res)=>{
+    try {
       await Product.create(req.body);
+      req.flash('success', "product created successfully")
+      // req.flash('info', 'Flash is back!')
       res.redirect('/product');
+    } catch (error) {
+      //  req.flash("error", "something is going wrong")
+       console.log(error);
+    }
+      
   })
   
   router.get("/product/:id", async(req, res)=>{
       const id = req.params.id;
-      const singleProduct = await Product.findById(id);
-    //   console.log(singleProduct);
+      const singleProduct = await Product.findById(id).populate('review');
+      console.log(singleProduct);
       res.render("products/singleProduct", {singleProduct});
   })
   
