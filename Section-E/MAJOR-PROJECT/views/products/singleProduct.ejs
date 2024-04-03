@@ -1,0 +1,46 @@
+<% layout('layout/boilerplate')  -%>
+<div class="row">
+<div class="col-lg-6">
+    <div class="card m-3" style="width: 18rem;">
+        <img src=<%= item.imageUrl %> class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= item.productName %></h5>
+          <p class="card-text"><%= item.description %></p>
+          <p class="card-text"><%= item.price %></p>
+          <a href="#" class="btn btn-primary m-1">Add to Cart</a>
+          <a href="/product/<%= item._id %>/edit" class="btn btn-success m-1">Edit</a>
+          <a href="#" class="btn btn-danger m-1">Buy Now</a>
+          <form action="/product/<%= item._id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-warning m-1">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+      <div class=" container col-lg-6">
+        <form action="/review/<%= item._id %>" method="post">
+          <h1 class="text-center">Review</h1>
+          <div>
+            <label for="customRange3" class="form-label">rating</label>
+            <input type="range" class="form-control" min="0" max="5" step="1" id="customRange3" name="rating">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Comment</label>
+            <textarea type="text" class="form-control" id="exampleInputPassword1" name="comment"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <% for(review of item.reviews){ %>
+        <div class="container mt-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= review.rating %></h5>
+              <p class="card-text"><%= review.comment %></p>
+              <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+      
+ 
