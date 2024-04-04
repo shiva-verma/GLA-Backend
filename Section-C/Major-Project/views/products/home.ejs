@@ -1,0 +1,16 @@
+
+<% layout('layout/boilerplate') -%>
+
+  <div class="container d-flex flex-wrap">
+  <% for(let product of allProduct){ %>
+      <div class="card m-2" style="width: 18rem;">
+        <img src=<%= product.imageUrl %> class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= product.productName %></h5>
+          <p class="card-text"><%= product.description %></p>
+          <p class="card-text"><%= product.price %></p>
+          <a href="/product/<%= product._id %>" class="btn btn-primary">Show</a>
+        </div>
+      </div>
+      <% } %>
+  </div>
