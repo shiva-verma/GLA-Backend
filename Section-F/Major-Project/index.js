@@ -6,6 +6,7 @@ const app = express();
 const methodOverride = require('method-override');
 const ejsmate = require('ejs-mate');
 const productRouter = require('./routes/productRoutes.js');
+const reviewRouter = require('./routes/reviewRoute.js')
 const port = 4000;
 
 dbConnect();
@@ -17,6 +18,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.use(productRouter);
+app.use(reviewRouter);
 
 
 

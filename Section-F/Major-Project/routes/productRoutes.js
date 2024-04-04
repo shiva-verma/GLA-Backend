@@ -35,7 +35,8 @@ router.get("/product/new", (req, res) => {
   
   router.get('/product/:id', async(req, res)=>{
     const {id} = req.params;
-    const product = await Product.findById(id);
+    const product = await Product.findById(id).populate('reviews');
+    // console.log(product);
     res.render('products/singleProduct', {item:product});
   })
   

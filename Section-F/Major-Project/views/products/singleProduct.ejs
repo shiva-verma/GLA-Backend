@@ -1,6 +1,7 @@
 <% layout('layout/boilerplate') -%>
-
-    <div class="card m-2" style="width: 18rem;">
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card m-2 mt-4" style="width: 18rem;">
         <img src= <%= item.imageUrl %> class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title"><%= item.productName %></h5>
@@ -13,4 +14,32 @@
           <a href="" class="btn btn-warning">Buy now</a>
         </div>
       </div>
-  
+    </div>
+    <div class="col-lg-6">
+      <h1 class="text-center">Review</h1>
+      <form action="/review/<%= item._id %>" method="POST">
+        <div class="mb-3">
+          <label for="customRange3" class="form-label">Rating</label>
+          <input type="range" class="form-control" min="0" max="5" step="1" id="customRange3" name="rating">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">comment</label>
+          <textarea type="text" class="form-control" id="exampleInputPassword1" name="comment"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <% for(let review of item.reviews){ %>
+      <div class="container mt-4">
+        <div class="card"> 
+          <div class="card-body">
+            <h5 class="card-title"><%= review.rating %></h5>
+            <p class="card-text"><%= review.comment %></p>
+            <form action="/review/<%= review._id %>/<%= item._id %>?_method=delete" method="POST">
+              <button type="submit" class="btn btn-danger">delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>  
