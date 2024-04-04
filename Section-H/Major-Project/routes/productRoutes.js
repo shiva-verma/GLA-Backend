@@ -53,6 +53,8 @@ router.get("/product/new", (req, res) => {
       const {id} = req.params;
   
       await Product.findByIdAndDelete(id);
+
+      req.flash("success", "product deleted successfully");
   
       res.redirect('/product');
   })
