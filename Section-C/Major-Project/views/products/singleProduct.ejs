@@ -1,5 +1,6 @@
 <% layout('layout/boilerplate') -%>
-
+<div class="row">
+  <div class="col-lg-6">
     <div class="card m-2" style="width: 18rem;">
         <img src=<%= product.imageUrl %> class="card-img-top" alt="...">
         <div class="card-body">
@@ -12,6 +13,21 @@
             <button type="submit" class="btn btn-danger">Delete</button>
           </form>
           <a href="" class="btn btn-warning">Buy Now</a>
-
         </div>
       </div>
+    </div>
+    <div class="col-lg-6">
+      <h1 class="text-center">Review</h1>
+      <form action="/review/<%= product._id %>" method="POST">
+        <div class="mb-3">
+          <label for="customRange3" class="form-label">Rating</label>
+          <input type="range" class="form-control" min="0" max="5" step="1" id="customRange3" name="rating">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Comment</label>
+          <textarea type="text" class="form-control" id="exampleInputPassword1" name="comment"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+</div>

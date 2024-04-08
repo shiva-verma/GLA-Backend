@@ -22,7 +22,8 @@ router.get("/product/new", (req, res) => {
     // await newProduct.save();
   
     await Product.create(req.body)
-    res.send("hiii")
+    res.redirect('/product')
+    // res.send("hiii")
   
   })
   
