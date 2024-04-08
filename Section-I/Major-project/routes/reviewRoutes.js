@@ -10,12 +10,23 @@ router.post('/review/:id',async(req, res) => {
     const{rating, comment} = req.body;
     console.log(req.body);
     const review = await Review.create({rating, comment});
+    console.log(review);
 
     product.reviews.push(review);
 
     await product.save();
 
     res.redirect(`/product/${id}`);
+})
+
+
+router.delete('/review/:id/:productId', async(req, res)=>{
+    const {id, productId} = req.params;
+
+    await Review.findByIdAndDelete(id)
+
+    // res.send(`${id} deleted`)
+    res.redirect(`/product/${productId}`)
 })
 
 

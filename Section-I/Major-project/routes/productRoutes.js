@@ -20,6 +20,8 @@ router.get("/product/new", (req, res) => {
       // await product.save();
   
       await Product.create(req.body);
+
+      req.flash('success', 'Product created successfully');
       res.redirect('/product');
   
   })
