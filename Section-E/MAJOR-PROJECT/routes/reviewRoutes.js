@@ -16,4 +16,12 @@ router.post("/review/:id", async(req, res)=>{
     res.redirect(`/product/${id}`); 
 })
 
+router.delete("/review/:reviewId/:productId", async(req, res)=>{
+    const {reviewId, productId} = req.params;
+
+    await Review.findByIdAndDelete(reviewId);
+
+    res.redirect(`/product/${productId}`)
+})
+
 module.exports = router;
