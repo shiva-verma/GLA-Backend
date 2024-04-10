@@ -9,6 +9,7 @@ router.get("/product/new", (req, res) => {
   router.post("/product", async(req, res)=>{
      await Product.create(req.body);
     //  res.redirect("/product");
+    req.flash('success', 'Product created');
     res.redirect("/product")
   })
   
@@ -51,6 +52,8 @@ router.get("/product/new", (req, res) => {
     const {id} = req.params;
   
     await Product.findByIdAndDelete(id);
+
+    req.flash("success", "deleted successfully")
     res.redirect('/product');
   })
 
