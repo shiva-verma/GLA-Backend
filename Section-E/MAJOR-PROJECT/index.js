@@ -6,6 +6,7 @@ const methodOverride = require('method-override');
 const ejsmate = require('ejs-mate');
 const productRouter = require('./routes/productRoutes.js');
 const reviewRouter = require('./routes/reviewRoutes.js');
+const userRouter = require('./routes/userRoutes.js')
 const flash = require('connect-flash');
 const session = require('express-session');
 const app = express();
@@ -29,14 +30,18 @@ app.use(methodOverride('_method'));
 
 app.use(flash());
 
+
 app.use((req, res, next)=>{
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.warning = req.flash("warning");
+    res.locals.info = req.flash("info");
     next();
 })
 
 app.use(productRouter);
 app.use(reviewRouter);
+app.use(userRouter)
 
 dbConnect();
 
