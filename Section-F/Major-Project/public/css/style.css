@@ -1,7 +1,8 @@
-* {
-    margin: 8px;
-}
 
 h1 {
     color: red;
+}
+
+img {
+    height: 250px;
 }

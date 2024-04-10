@@ -21,9 +21,19 @@ router.get("/product/new", (req, res) => {
   
       // await newProduct.save();
   
-      await Product.create(req.body);
+      try {
+        await Product.create(req.body);
   
       // res.send("hiii");
+        req.flash("success", "Product created suucessfully")
+      } catch (error) {
+        req.flash("error", "product not created ")
+      }
+      
+ 
+
+      // req.flash("success"); //product created successfully
+      
       res.redirect("/product");
   })
   
@@ -60,7 +70,7 @@ router.get("/product/new", (req, res) => {
         const {id} = req.params;
   
         await Product.findByIdAndDelete(id);
-  
+        req.flash("success", "product deleted successfully");
         res.redirect('/product');
   })
 

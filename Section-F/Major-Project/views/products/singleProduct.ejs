@@ -7,11 +7,11 @@
           <h5 class="card-title"><%= item.productName %></h5>
           <p class="card-text"><%= item.description %></p>
           <a href="/product/<%= item._id %>/edit" class="btn btn-primary">Edit</a>
-          <form action="/product/<%= item._id %>?_method=delete" method="POST">
+          <form action="/product/<%= item._id %>?_method=delete" method="POST" class="d-inline">
             <button type="submit" class="btn btn-success">delete</button>
           </form>
           <a href="" class="btn btn-danger">Add to cart</a>
-          <a href="" class="btn btn-warning">Buy now</a>
+          <a href="" class="btn btn-warning m-1">Buy now</a>
         </div>
       </div>
     </div>
