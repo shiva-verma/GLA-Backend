@@ -24,18 +24,22 @@ app.use(session({
     saveUninitialized: true,
   }))
 
-app.use(flash());
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
+app.use(flash());
+
+app.use((req, res, next)=>{
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+})
+
 app.use(productRouter);
 app.use(reviewRouter);
 dbConnect();
 
-app.use((req, res, next)=>{
-    res.locals.success = req.flash("success");
-    res.locals.error = req.flash('error');
-    next();
-})
+
+
 
 
 app.listen(port, () => {

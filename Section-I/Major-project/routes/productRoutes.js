@@ -29,7 +29,9 @@ router.get("/product/new", (req, res) => {
   router.get("/product", async(req, res)=>{
     const allProduct = await Product.find({})
     // console.log(allProduct);
-    res.render("home", {allProduct});
+    // const msg = req.flash("success","goggggggg");
+    // console.log(msg);
+    res.render("products/home", {allProduct});
   })
   
   router.get('/product/:id', async(req, res)=>{
@@ -63,7 +65,9 @@ router.get("/product/new", (req, res) => {
         const {id} = req.params;
   
         await Product.findByIdAndDelete(id);
-  
+
+        req.flash("success", "product deleted successfully");
+
         res.redirect('/product');
   
   })  
