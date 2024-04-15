@@ -22,6 +22,10 @@ router.get("/product/new", (req, res) => {
     // await newProduct.save();
   
     await Product.create(req.body)
+
+    req.flash("success", "Product created successfully");
+
+    // req.flash("success");
     res.redirect('/product')
     // res.send("hiii")
   
@@ -29,13 +33,14 @@ router.get("/product/new", (req, res) => {
   
   router.get("/product", async(req, res)=>{
     const allProduct = await Product.find({});
-    console.log(allProduct);
+    // console.log(allProduct);
     res.render("products/home", {allProduct});
   })
   
   router.get('/product/:id', async(req, res)=>{
     const {id} = req.params
-    const singleProduct = await Product.findById(id);
+    const singleProduct = await Product.findById(id).populate("reviews");
+    console.log(singleProduct);
     res.render("products/singleProduct", {product:singleProduct});
   })
   

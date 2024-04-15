@@ -29,5 +29,18 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+      <% for(let review of product.reviews) {%>
+      <div class="col-lg-6 mt-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= review.rating %></h5>
+            <p class="card-text"><%= review.comment  %></p>
+            <form action="/review/<%= review._id  %>/<%= product._id %>?_method=DELETE" method="POST">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <% } %>
     </div>
 </div>

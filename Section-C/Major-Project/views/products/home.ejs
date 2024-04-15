@@ -1,6 +1,8 @@
 
 <% layout('layout/boilerplate') -%>
-
+<% if(success && success.length){ %>
+  <h1><%= success %></h1>
+  <% } %>
   <div class="container d-flex flex-wrap">
   <% for(let product of allProduct){ %>
       <div class="card m-2" style="width: 18rem;">
