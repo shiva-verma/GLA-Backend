@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const Product = require('../model/productModel.js');
+const isLoggedIn = require('../middleware/middleware.js');
 
 router.get("/product/new", (req, res) => {
     res.render("products/addProduct");
@@ -19,7 +20,7 @@ router.get("/product/new", (req, res) => {
      res.render("products/home", {allProduct});
   })
   
-  router.get("/product/:id", async(req, res)=>{
+  router.get("/product/:id", isLoggedIn, async(req, res)=>{
       const id = req.params.id;
       // console.log(id);
       const singleProduct = await Product.findById(id).populate("reviews");
@@ -27,7 +28,7 @@ router.get("/product/new", (req, res) => {
       res.render("products/singleProduct", {item:singleProduct})
   })
   
-  router.get('/product/:id/edit', async(req, res)=>{
+  router.get('/product/:id/edit', isLoggedIn, async(req, res)=>{
     const {id} = req. params
       const singleProduct = await Product.findById(id)
       res.render('products/edit', {i:singleProduct})
