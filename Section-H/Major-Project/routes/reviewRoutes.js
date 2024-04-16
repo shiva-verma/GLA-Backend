@@ -1,9 +1,10 @@
 const express = require('express');
 const Review = require('../model/reviewsModel');
 const router = express.Router();
-const Product = require('../model/productModel.js')
+const Product = require('../model/productModel.js');
+const isLoggedIn = require('../middleware/middleware.js');
 
-router.post("/review/:id", async(req,res) => {
+router.post("/review/:id", isLoggedIn, async(req,res) => {
     const {id} = req.params;
     const product = await Product.findById(id);
 

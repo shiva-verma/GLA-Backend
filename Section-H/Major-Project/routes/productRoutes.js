@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../model/productModel.js')
+const isLoggedIn = require('../middleware/middleware.js')
 
 router.get("/product/new", (req, res) => {
     res.render("products/addProduct");
@@ -19,13 +20,13 @@ router.get("/product/new", (req, res) => {
       // req.flash('info', 'Flash is back!')
       res.redirect('/product');
     } catch (error) {
-      //  req.flash("error", "something is going wrong")
+       req.flash("error", "something is going wrong")
        console.log(error);
     }
       
   })
   
-  router.get("/product/:id", async(req, res)=>{
+  router.get("/product/:id", isLoggedIn, async(req, res)=>{
       const id = req.params.id;
       const singleProduct = await Product.findById(id).populate('review');
       console.log(singleProduct);

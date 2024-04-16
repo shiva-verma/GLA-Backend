@@ -11,6 +11,8 @@ router.get('/login', (req, res)=>{
 router.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login' }),
   (req, res) => {
+    // console.log(req.user);
+    req.flash("success", `welcome back ${req.user.username}`)
     res.redirect('/product');
   });
 
@@ -28,5 +30,13 @@ router.post('/register', async(req,res) => {
 
     res.redirect('/login');
 })
+
+router.post('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    req.flash("error", "bye bye")
+    res.redirect('/login');
+  });
+});
 
 module.exports = router;

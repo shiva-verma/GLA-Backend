@@ -12,11 +12,29 @@
           <li class="nav-item">
             <a class="nav-link" href="/product">Product</a>
           </li>
-          
           <li class="nav-item">
             <a href="/product/new" class="nav-link ">create new</a>
           </li>
         </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <% if(currUser){ %>
+            <li class="nav-item">
+              <a class="nav-link"><%= currUser.username %></a>
+            </li>
+            <li class="nav-item">
+              <form action="/logout" method="post">
+                <button type="submit" class="nav-link ">Logout</button>
+              </form>
+            </li>
+          <% }else{ %>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup">signup</a>
+              </li>
+              <li class="nav-item">
+                <a href="/login" class="nav-link ">login</a>
+              </li>
+            <% } %>
+          </ul>
       </div>
     </div>
   </nav>
