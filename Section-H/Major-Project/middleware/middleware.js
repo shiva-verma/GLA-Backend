@@ -8,4 +8,12 @@ const isLoggedIn = (req, res, next)=>{
     next();
 }
 
-module.exports = isLoggedIn;
+const isRetailer = (req, res, next)=>{
+        if(req.user.userType === "retailer"){
+          next();
+        }
+        req.flash("error", "you can't do that");
+        res.redirect('/login');
+}
+
+module.exports = {isLoggedIn, isRetailer};

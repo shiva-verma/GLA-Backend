@@ -12,9 +12,11 @@
           <li class="nav-item">
             <a class="nav-link" href="/product">Product</a>
           </li>
-          <li class="nav-item">
-            <a href="/product/new" class="nav-link ">create new</a>
-          </li>
+          <% if(currUser && currUser.userType && currUser.userType === "retailer"){ %>
+            <li class="nav-item">
+              <a href="/product/new" class="nav-link ">create new</a>
+            </li>
+          <% } %>
         </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <% if(currUser){ %>

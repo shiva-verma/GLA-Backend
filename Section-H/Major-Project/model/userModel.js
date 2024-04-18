@@ -8,7 +8,11 @@ const userSchema = new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref:"product"
         }
-    ]
+    ],
+    userType:{
+        type:String,
+        enum:["consumer", "retailer"]
+    }
 })
 
 userSchema.plugin(passportLocalMongoose);

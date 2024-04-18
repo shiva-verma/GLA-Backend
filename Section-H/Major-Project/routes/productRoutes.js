@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../model/productModel.js')
-const isLoggedIn = require('../middleware/middleware.js')
+// const {isLoggedIn, isRetailer} = require('../middleware/middleware.js')
+const isRetailer = require('../middleware/middleware.js')
+
 
 router.get("/product/new", (req, res) => {
     res.render("products/addProduct");
@@ -13,7 +15,7 @@ router.get("/product/new", (req, res) => {
     res.render("products/home", {allProduct});
   })
   
-  router.post("/product",async(req, res)=>{
+  router.post("/product", isRetailer, async(req, res)=>{
     try {
       await Product.create(req.body);
       req.flash('success', "product created successfully")
