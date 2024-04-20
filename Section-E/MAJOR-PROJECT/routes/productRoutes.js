@@ -58,4 +58,20 @@ router.get("/product/new", (req, res) => {
     res.redirect('/product');
   })
 
+  router.get('/cart', async(req, res)=>{
+    const user = await User.findById(req.user._id).populate("cart");
+    const cartData = user.cart;
+    res.render("products/cart", {cartData});
+  })
+
+  router.post('/product/:id/cart', async(req, res)=>{
+      const {id} = req.params;
+      const product = await Product.findById(id);
+
+      const user = req.user;
+      user.cart.push(product);
+      await user.save();
+      res.redirect('/product');
+  })
+
 module.exports = router;

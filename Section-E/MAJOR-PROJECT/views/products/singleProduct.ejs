@@ -7,7 +7,9 @@
           <h5 class="card-title"><%= item.productName %></h5>
           <p class="card-text"><%= item.description %></p>
           <p class="card-text"><%= item.price %></p>
-          <a href="#" class="btn btn-primary m-1">Add to Cart</a>
+          <form action="/product/<%= item._id %>/cart" method="post">
+            <button type="submit" class="btn btn-primary m-1">Add to Cart</button>
+          </form>
           <a href="/product/<%= item._id %>/edit" class="btn btn-success m-1">Edit</a>
           <a href="#" class="btn btn-danger m-1">Buy Now</a>
           <form action="/product/<%= item._id %>?_method=DELETE" method="POST">
