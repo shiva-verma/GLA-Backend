@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 router.get("/product/new", (req, res) => {
-    res.render("addProduct");
+    res.render("products/addProduct");
   });
   
   router.post("/product", async(req, res)=>{
@@ -38,13 +38,13 @@ router.get("/product/new", (req, res) => {
     const {id} = req.params;
     const product = await Product.findById(id).populate("reviews");
     console.log(product);
-    res.render('singleProduct', {item:product});
+    res.render('products/singleProduct', {item:product});
   })
   
   router.get('/product/:id/edit', async(req, res)=>{
     const {id} = req.params;
     const product = await Product.findById(id);
-       res.render("edit", {i:product});
+       res.render("products/edit", {i:product});
   })
   
   router.patch('/product/:id', async(req, res)=>{
@@ -71,5 +71,22 @@ router.get("/product/new", (req, res) => {
         res.redirect('/product');
   
   })  
+
+
+  router.get('/cart', async(req, res)=>{
+    const data = await User.findById(req.user._id).populate("cart");
+    res.render("product/cart", {data});
+  })
+  
+  router.post('/product/:id/cart', async(req, res)=>{
+       const {id} = req.params;
+       const product = await Product.findById(id);
+
+       const user = req.user;
+
+       user.cart.push(product);
+       await user.save();
+       res.redirect('/cart');
+  })
 
 module.exports = router;

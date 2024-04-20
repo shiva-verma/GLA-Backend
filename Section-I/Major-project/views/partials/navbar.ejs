@@ -17,7 +17,25 @@
             <a href="/product/new" class="nav-link" >Create product</a>
           </li>
         </ul>
-        
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <% if(!currUser){ %>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a href="/signup" class="nav-link" >signup</a>
+          </li>
+          <% }else{ %>
+            <li class="nav-item">
+              <a class="nav-link" ><%= currUser.username %></a>
+            </li>
+            <li class="nav-item">
+              <form action="/logout" method="post">
+                 <button class="nav-link" >Logout</button> 
+              </form>
+            </li>
+            <% } %>
+        </ul>
       </div>
     </div>
   </nav>
