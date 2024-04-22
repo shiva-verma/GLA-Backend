@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const Product = require('../model/productModel.js');
-const isLoggedIn = require('../middleware/middleware.js');
+const {isLoggedIn, isSeller} = require('../middleware/middleware.js');
 
 router.get("/product/new", (req, res) => {
     res.render("products/addProduct");
@@ -34,7 +34,7 @@ router.get("/product/new", (req, res) => {
       res.render('products/edit', {i:singleProduct})
   })
   
-  router.patch('/product/:id',async(req, res)=>{
+  router.patch('/product/:id',isLoggedIn, isSeller,async(req, res)=>{
       //find product with given id in params
       const {id} = req.params;
       const product = await Product.findById(id);
@@ -49,7 +49,7 @@ router.get("/product/new", (req, res) => {
       res.redirect(`/product/${id}`);
   })
   
-  router.delete('/product/:id', async(req, res)=>{
+  router.delete('/product/:id',isLoggedIn, isSeller, async(req, res)=>{
     const {id} = req.params;
   
     await Product.findByIdAndDelete(id);

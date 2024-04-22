@@ -3,6 +3,10 @@ const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new mongoose.Schema({
     email:String,
+    userType:{
+            type:String,
+            enum:["buyer", "seller"]
+    },
     cart:[
         {
             type: mongoose.Schema.Types.ObjectId,
