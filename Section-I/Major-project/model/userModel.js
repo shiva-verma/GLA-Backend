@@ -5,6 +5,10 @@ const userSchema = new mongoose.Schema({
     // username:String,  create by default with the help of passport local mongoose
     // password:String,
     email:String,
+    userType:{
+        type:String,
+        enum:["buyer","seller"]
+    },
     cart:[
         {
             type:mongoose.Schema.Types.ObjectId,

@@ -12,11 +12,11 @@ router.get('/signup',(req, res)=>{
 })
 
 router.post('/register', async(req, res)=>{
-    const {username, email, password} = req.body;
+    const {username, email, password, userType} = req.body;
 
     // await User.create({username, email, password});
 
-    const user = new User({username, email});
+    const user = new User({username, email, userType});
 
     await User.register(user, password);
 
