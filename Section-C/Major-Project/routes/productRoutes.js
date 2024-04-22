@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../model/productModel.js')
+const Product = require('../model/productModel.js');
+const isLoggedIn = require('../middleware/middleware.js');
 
 router.get("/product/new", (req, res) => {
     res.render("products/addProduct");
@@ -37,7 +38,7 @@ router.get("/product/new", (req, res) => {
     res.render("products/home", {allProduct});
   })
   
-  router.get('/product/:id', async(req, res)=>{
+  router.get('/product/:id', isLoggedIn, async(req, res)=>{
     const {id} = req.params
     const singleProduct = await Product.findById(id).populate("reviews");
     console.log(singleProduct);
@@ -54,7 +55,7 @@ router.get("/product/new", (req, res) => {
     res.render('products/edit', {i:product});
   })
   
-  router.patch('/product/:id', async(req, res)=>{
+  router.patch('/product/:id', isLoggedIn , isSeller, async(req, res)=>{
     const {id} = req.params;
   
     const {productName, price, description, imageUrl} = req.body
@@ -63,7 +64,7 @@ router.get("/product/new", (req, res) => {
     res.redirect(`/product/${id}`);
   })
   
-  router.delete('/product/:id', async(req, res)=>{
+  router.delete('/product/:id', isLoggedIn, isSeller, async(req, res)=>{
       const {id} = req.params;
   
       await Product.findByIdAndDelete(id);

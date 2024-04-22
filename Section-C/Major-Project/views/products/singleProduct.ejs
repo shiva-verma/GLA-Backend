@@ -7,12 +7,14 @@
           <h5 class="card-title"><%= product.productName %></h5>
           <p class="card-text"><%= product.description %></p>
           <p class="card-text"><%= product.price %></p>
-          <a href="" class="btn btn-primary">Add to cart</a>
-          <a href="/product/<%= product._id %>/edit" class="btn btn-success">Edit</a>
-          <form action="/product/<%= product._id %>?_method=Delete" method="POST">
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
+          <% if(currUser && currUser.userType && currUser.userType == "seller"){ %>
+              <a href="/product/<%= product._id %>/edit" class="btn btn-success">Edit</a>
+              <form action="/product/<%= product._id %>?_method=Delete" method="POST">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+          <% } %>
           <a href="" class="btn btn-warning">Buy Now</a>
+          <a href="" class="btn btn-primary">Add to cart</a>
         </div>
       </div>
     </div>

@@ -4,7 +4,10 @@ const userSchema = new mongoose.Schema({
     // username:String,
     // password:String,
     email:String,
-    
+    userType:{
+        type:String,
+        enum:["buyer","seller"]
+    }
 });
 
 userSchema.plugin(passportLocalMongoose);
