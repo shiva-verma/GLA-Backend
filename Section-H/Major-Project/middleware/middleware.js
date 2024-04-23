@@ -1,19 +1,19 @@
 const passport = require('passport');
 
-const isLoggedIn = (req, res, next)=>{
+module.exports.isLoggedIn = (req, res, next)=>{
     if(!req.isAuthenticated()){
         req.flash("error", "you need to login first");
         return res.redirect('/login');
     }  
-    next();
+    return next();
 }
 
-const isRetailer = (req, res, next)=>{
+module.exports.isRetailer = (req, res, next)=>{
         if(req.user.userType === "retailer"){
-          next();
+          return next();
         }
         req.flash("error", "you can't do that");
-        res.redirect('/login');
+        return res.redirect('/login');
 }
 
-module.exports = {isLoggedIn, isRetailer};
+// module.exports = {isLoggedIn, isRetailer};
