@@ -21,6 +21,7 @@ router.get("/product/new", (req, res) => {
       //   imageUrl
       // })
   
+      // window.localStorage.setItem({"product":product});
       // await product.save();
   
       await Product.create(req.body);
@@ -38,7 +39,7 @@ router.get("/product/new", (req, res) => {
     res.render("products/home", {allProduct});
   })
   
-  router.get('/product/:id', isLoggedIn, async(req, res)=>{
+  router.get('/product/:id', async(req, res)=>{
     const {id} = req.params;
     const product = await Product.findById(id).populate("reviews");
     console.log(product);
@@ -51,7 +52,7 @@ router.get("/product/new", (req, res) => {
        res.render("products/edit", {i:product});
   })
   
-  router.patch('/product/:id', isSeller, async(req, res)=>{
+  router.patch('/product/:id', async(req, res)=>{
        //find product using given id in params
        const {id} = req.params;
        const product = await Product.findById(id);
@@ -65,7 +66,7 @@ router.get("/product/new", (req, res) => {
   
   })
   
-  router.delete('/product/:id', isSeller, async(req, res)=>{
+  router.delete('/product/:id', async(req, res)=>{
         const {id} = req.params;
   
         await Product.findByIdAndDelete(id);
@@ -92,5 +93,26 @@ router.get("/product/new", (req, res) => {
        await user.save();
        res.redirect('/cart');
   })
+
+  router.post('/product/:productId/like', async(req, res)=>{
+        const {productId} = req.params;
+
+        const user = req.user;
+
+        const isExisted = user.like.some((item) => item.id.equals(productId));
+
+
+        if(isExisted){
+          const updateLike = user.like.filter((item) => item.id != productId);
+          user.like = updateLike;
+        }
+        else{
+          user.like.push(productId);
+        }
+
+        await user.save();
+
+
+  })  
 
 module.exports = router;

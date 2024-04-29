@@ -12,6 +12,11 @@
               <h5 class="card-title"><%= item.price%></h5>
               <p class="card-text"><%= item.description%></p>
               <a href="/product/<%= item._id %>" class="btn btn-primary">Show</a>
+              <form action="/product/<%= item._id %>/like" method="post">
+                <button class="btn btn-danger">Like</button>
+              </form>
+              
+
         </div>
       </div>
       <% } %>
