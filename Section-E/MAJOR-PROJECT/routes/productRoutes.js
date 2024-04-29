@@ -74,4 +74,8 @@ router.get("/product/new", (req, res) => {
       res.redirect('/product');
   })
 
+  router.post("/product/:id/like", (req, res)=>{
+    
+  })
+
 module.exports = router;

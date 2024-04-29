@@ -8,6 +8,11 @@
           <p class="card-text"><%= item.description %></p>
           <p class="card-text"><%= item.price %></p>
           <a href="/product/<%= item._id%>" class="btn btn-success">Show</a>
+          <form action="/product/<%= item._id%>/like" method="post">
+            <button class="btn btn-warning">Like</button>
+          </form>
+          
+
         </div>
       </div>
       <% } %>
