@@ -14,7 +14,10 @@
               </form>
           <% } %>
           <a href="" class="btn btn-warning">Buy Now</a>
-          <a href="" class="btn btn-primary">Add to cart</a>
+          <form action="/product/<%= product._id%>/cart" method="post">
+             <button class="btn btn-primary">Add to cart</button>
+          </form>
+         
         </div>
       </div>
     </div>

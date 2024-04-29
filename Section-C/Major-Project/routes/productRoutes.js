@@ -55,7 +55,7 @@ router.get("/product/new", (req, res) => {
     res.render('products/edit', {i:product});
   })
   
-  router.patch('/product/:id', isLoggedIn , isSeller, async(req, res)=>{
+  router.patch('/product/:id', isLoggedIn, async(req, res)=>{
     const {id} = req.params;
   
     const {productName, price, description, imageUrl} = req.body
@@ -64,12 +64,28 @@ router.get("/product/new", (req, res) => {
     res.redirect(`/product/${id}`);
   })
   
-  router.delete('/product/:id', isLoggedIn, isSeller, async(req, res)=>{
+  router.delete('/product/:id', isLoggedIn, async(req, res)=>{
       const {id} = req.params;
   
       await Product.findByIdAndDelete(id);
       req.flash("info", "product deleted successfully");
       res.redirect('/product');
+  })
+
+  router.post('/product/:productId/cart', async(req, res)=>{
+       const{productId}=req.params;
+
+       const currUser=req.user;
+       console.log(currUser)
+       if(currUser.cart.productId)
+       {
+          
+       }else{
+        console.log("not add ")
+       }
+
+      await currUser.save();
+
   })
 
 module.exports = router;
