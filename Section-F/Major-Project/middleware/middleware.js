@@ -4,15 +4,15 @@ module.exports.isLoggedIn = (req, res, next) =>{
         req.flash("success", "you need to login first")
         return res.redirect('/login')
     }
-    next();
+   return next();
 }
 
 module.exports.isSeller = (req, res, next) =>{
-    if(req.user.userType === "seller"){
-        next();
+    if(req.user.userType == "seller"){
+        return next();
     }
    req.flash("error", "you didn't have permission");
-   res.redirect('/product');
+   return res.redirect('/product');
 }
 
 // module.exports = {isLoggedIn, isSeller};
